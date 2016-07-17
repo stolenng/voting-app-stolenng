@@ -19,6 +19,7 @@ module.exports = function (app) {
 		currentItem.save(function(err) {
 			if(err) throw err;
 		});
+		next();
 	},
 	function (req, res) {
 		var searchQuery = req.params.search;
