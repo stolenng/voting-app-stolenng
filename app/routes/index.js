@@ -37,5 +37,9 @@ module.exports = function (app) {
 		  res.json(data);
 		});
 	});
+	
+	app.route('/').get(function (req, res) {
+		res.sendFile(path + '/public/index.html');
+	});
 
 };
