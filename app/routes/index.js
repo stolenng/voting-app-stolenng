@@ -12,18 +12,18 @@ var imgAPI = new imageAPI();
 
 module.exports = function (app) {
 
-	app.get('/api/imagesearch/:search', apicache('24 hour'), function (req, res) {
-		var searchQuery = req.params.search;
-		var offset = req.query.offset || 1;
-		
+	app.get('/api/imagesearch/:search', apicache('24 hour'),function (req, res, next) {
 		var currentItem = new history ({
-			query: searchQuery
+			query: req.params.search
 		});
-		
 		currentItem.save(function(err) {
 			if(err) throw err;
 		});
-
+	},
+	function (req, res) {
+		var searchQuery = req.params.search;
+		var offset = req.query.offset || 1;
+		
 		
 		imgAPI.getImages(searchQuery, offset).then(function (items) {
 			var parsedItems = items.map(imageParser);
