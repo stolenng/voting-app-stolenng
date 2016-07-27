@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html >
 <title>Voting App - stolenng</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
@@ -13,16 +13,17 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 .w3-navbar,h1,button {font-family: "Montserrat", sans-serif}
 .fa-anchor,.fa-coffee {font-size:200px}
 </style>
-<body>
-
+<body ng-app="myApp">
+<div ng-controller="mainController">
+  
 <!-- Navbar -->
 <ul class="w3-navbar w3-red w3-card-2 w3-top w3-left-align w3-large navbar">
   <li class="w3-hide-medium w3-hide-large w3-opennav w3-right">
     <a class="w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
   </li>
-  <li><a href="#" class="w3-padding-large w3-white">Home</a></li>
+  <li><a href="#" class="w3-padding-large w3-white" ng-click="redirectTo('main')">Home</a></li>
   <li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white">Sign In</a></li>
-  <li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white">Sign Up</a></li>
+  <li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white" ng-click="redirectTo('sign-up')">Sign Up</a></li>
   <li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white">My Votes</a></li>
 </ul>
 
@@ -36,31 +37,13 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
   </ul>
 </div>
 
-<!-- Header -->
-<div class="w3-container w3-red w3-center w3-padding-128">
-  <h1 class="w3-margin w3-jumbo">START PAGE</h1>
-  <button class="w3-btn w3-padding-16 w3-large w3-margin-top">Sign Up</button>
-  <button class="w3-btn w3-padding-16 w3-large w3-margin-top">Sign In</button>
+
+<div ui-view>
+  
 </div>
 
-<!-- First Grid 
-<div class="w3-row-padding w3-padding-64 w3-container">
-  <div class="w3-content">
-    <div class="w3-twothird">
-      <h1>Lorem Ipsum</h1>
-      <h5 class="w3-padding-32">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h5>
-
-      <p class="w3-text-grey">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint
-        occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-        laboris nisi ut aliquip ex ea commodo consequat.</p>
-    </div>
-
-    <div class="w3-third w3-center">
-      <i class="fa fa-anchor w3-padding-64 w3-text-red"></i>
-    </div>
-  </div>
 </div>
-
+<!--
 
 <div class="w3-row-padding w3-light-grey w3-padding-64 w3-container">
   <div class="w3-content">
@@ -106,6 +89,27 @@ function myFunction() {
     }
 }
 </script>
+
+<!--JavaScript Libraries-->
+<script src="public/bower_components/jquery/dist/jquery.js"></script>
+<script src="public/bower_components/angular/angular.js"></script>
+<script src="public/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="public/bower_components/Chart.js/dist/Chart.js"></script>
+<script src="public/bower_components/angular-chart.js/angular-chart.js"></script>
+
+<!-- Angular Main App -->
+<script src="public/app.js"></script>
+
+<!--Angular Controllers-->
+<script src="public/scripts/controllers/home.controller.js"></script>
+<script src="public/scripts/controllers/main.controller.js"></script>
+<script src="public/scripts/controllers/signup.controller.js"></script>
+
+
+
+
+
+
 
 </body>
 </html>
