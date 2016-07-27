@@ -1,0 +1,25 @@
+{
+  "name": "voting-app-stolenng",
+  "homepage": "https://github.com/stolenng/image-search-stolenng",
+  "authors": [
+    "Georgy Glezer <stolenng@gmail.com>"
+  ],
+  "description": "voting app - http://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_templates_start_page&stacked=h
+  ",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.8",
+    "jquery": "^3.1.0",
+    "bootstrap": "^3.3.7",
+    "angular-route": "^1.5.8",
+    "angular-chart.js": "^1.0.0"
+  }
+}

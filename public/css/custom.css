@@ -1,0 +1,8 @@
+.navbar {
+    text-align: center !important;
+}
+
+.w3-navbar li {
+    float:none;
+    display:inline-block;
+}
