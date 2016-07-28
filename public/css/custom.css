@@ -6,3 +6,28 @@
     float:none;
     display:inline-block;
 }
+
+.main-buttons-fix {
+    margin-right:40px;
+}
+
+.header-margin-fix {
+    margin-top:70px;
+}
+
+.signup-controller .col-xs-12 {
+    text-align: center;
+}
+
+.signup-controller .form-group {
+    display: inline-block;
+    width: 50%;
+}
+
+.error {
+    border:1px solid red;
+}
+
+.error:focus {
+    border:1px solid red;
+}

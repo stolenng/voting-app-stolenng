@@ -5,14 +5,15 @@
 		.module('myApp')
 		.controller('homeController', homeController);
 
-	homeController.$inject = ['$rootScope', '$scope', '$location'];
+	homeController.$inject = ['$rootScope', '$scope', '$state'];
 
-	function homeController($rootScope, $scope, $location) {
+	function homeController($rootScope, $scope, $state) {
 		init();
 
 		function init() {
-		    
 		}
+		
+
 		
 	
 	}

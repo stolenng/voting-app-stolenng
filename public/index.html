@@ -1,49 +1,68 @@
 <!DOCTYPE html>
-<html >
+<html ng-app="myApp">
 <title>Voting App - stolenng</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 <link rel="stylesheet" href="public/css/font-awesome.min.css">
+<link rel="stylesheet" href="public/bower_components/bootstrap/dist/css/bootstrap.css">
+<link rel="stylesheet" href="public/bower_components/sweetalert/dist/sweetalert.css">
 <link rel="stylesheet" href="public/css/w3.css">
 <link rel="stylesheet" href="public/css/custom.css">
 
 <style>
-body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
-.w3-navbar,h1,button {font-family: "Montserrat", sans-serif}
-.fa-anchor,.fa-coffee {font-size:200px}
+  body,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Lato", sans-serif
+  }
+  
+  .w3-navbar,
+  h1,
+  button {
+    font-family: "Montserrat", sans-serif
+  }
+  
+  .fa-anchor,
+  .fa-coffee {
+    font-size: 200px
+  }
 </style>
-<body ng-app="myApp">
-<div ng-controller="mainController">
-  
-<!-- Navbar -->
-<ul class="w3-navbar w3-red w3-card-2 w3-top w3-left-align w3-large navbar">
-  <li class="w3-hide-medium w3-hide-large w3-opennav w3-right">
-    <a class="w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-  </li>
-  <li><a href="#" class="w3-padding-large w3-white" ng-click="redirectTo('main')">Home</a></li>
-  <li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white">Sign In</a></li>
-  <li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white" ng-click="redirectTo('sign-up')">Sign Up</a></li>
-  <li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white">My Votes</a></li>
-</ul>
 
-<!-- Navbar on small screens -->
-<div id="navDemo" class="w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:51px">
-  <ul class="w3-navbar w3-left-align w3-large w3-black">
-    <li><a class="w3-padding-large" href="#">Link 1</a></li>
-    <li><a class="w3-padding-large" href="#">Link 2</a></li>
-    <li><a class="w3-padding-large" href="#">Link 3</a></li>
-    <li><a class="w3-padding-large" href="#">Link 4</a></li>
-  </ul>
-</div>
+<body>
+  <div ng-controller="mainController">
 
+    <!-- Navbar -->
+    <ul class="w3-navbar w3-red w3-card-2 w3-top w3-left-align w3-large navbar">
+      <li class="w3-hide-medium w3-hide-large w3-opennav w3-right">
+        <a class="w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+      </li>
+      <li><a href="" ng-class="{ 'w3-white': state.is('main') }" class="w3-padding-large " ng-click="redirectTo('main')">Home</a></li>
+      <li class="w3-hide-small"><a href="#" class="w3-padding-large w3-hover-white">Sign In</a></li>
+      <li class="w3-hide-small"><a ng-class="{ 'w3-white': state.is('signup') }" href="" class="w3-padding-large w3-hover-white" ng-click="redirectTo('signup')">Sign Up</a></li>
+      <li class="w3-hide-small"><a  class="w3-padding-large w3-hover-white">My Votes</a></li>
+    </ul>
 
-<div ui-view>
-  
-</div>
+    <!-- Navbar on small screens -->
+    <div id="navDemo" class="w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:51px">
+      <ul class="w3-navbar w3-left-align w3-large w3-black">
+        <li><a class="w3-padding-large" href="#">Link 1</a></li>
+        <li><a class="w3-padding-large" href="#">Link 2</a></li>
+        <li><a class="w3-padding-large" href="#">Link 3</a></li>
+        <li><a class="w3-padding-large" href="#">Link 4</a></li>
+      </ul>
+    </div>
+    <div ui-view>
 
-</div>
-<!--
+    </div>
+
+  </div>
+
+  <!--
 
 <div class="w3-row-padding w3-light-grey w3-padding-64 w3-container">
   <div class="w3-content">
@@ -66,7 +85,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
     <h1 class="w3-margin w3-xlarge">Quote of the day: live life</h1>
 </div>
 -->
-<!-- Footer 
+  <!-- Footer 
 <footer class="w3-container w3-padding-64 w3-center w3-opacity">
   <div class="w3-xlarge w3-padding-32">
    <a href="#" class="w3-hover-text-indigo"><i class="fa fa-facebook-official"></i></a>
@@ -78,32 +97,36 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
  <p>Powered by <a href="http://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
 </footer>
 -->
-<script>
-// Used to toggle the menu on small screens when clicking on the menu button
-function myFunction() {
-    var x = document.getElementById("navDemo");
-    if (x.className.indexOf("w3-show") == -1) {
+  <script>
+    // Used to toggle the menu on small screens when clicking on the menu button
+    function myFunction() {
+      var x = document.getElementById("navDemo");
+      if (x.className.indexOf("w3-show") == -1) {
         x.className += " w3-show";
-    } else {
+      }
+      else {
         x.className = x.className.replace(" w3-show", "");
+      }
     }
-}
-</script>
+  </script>
 
-<!--JavaScript Libraries-->
-<script src="public/bower_components/jquery/dist/jquery.js"></script>
-<script src="public/bower_components/angular/angular.js"></script>
-<script src="public/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-<script src="public/bower_components/Chart.js/dist/Chart.js"></script>
-<script src="public/bower_components/angular-chart.js/angular-chart.js"></script>
+  <!--JavaScript Libraries-->
+  <script src="public/bower_components/jquery/dist/jquery.js"></script>
+  <script src="public/bower_components/angular/angular.js"></script>
+  <script src="public/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="public/bower_components/Chart.js/dist/Chart.js"></script>
+  <script src="public/bower_components/angular-chart.js/angular-chart.js"></script>
+  <script src="public/bower_components/ngSweetAlert/SweetAlert.min.js"></script>
+  <script src="public/bower_components/sweetalert/dist/sweetalert.min.js"></script>
 
-<!-- Angular Main App -->
-<script src="public/app.js"></script>
 
-<!--Angular Controllers-->
-<script src="public/scripts/controllers/home.controller.js"></script>
-<script src="public/scripts/controllers/main.controller.js"></script>
-<script src="public/scripts/controllers/signup.controller.js"></script>
+  <!-- Angular Main App -->
+  <script src="public/app.js"></script>
+
+  <!--Angular Controllers-->
+  <script src="public/scripts/controllers/main.controller.js"></script>
+  <script src="public/scripts/controllers/home.controller.js"></script>
+  <script src="public/scripts/controllers/signup.controller.js"></script>
 
 
 
@@ -112,5 +135,5 @@ function myFunction() {
 
 
 </body>
-</html>
 
+</html>
