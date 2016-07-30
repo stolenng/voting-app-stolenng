@@ -5,9 +5,9 @@
 		.module('myApp')
 		.controller('mainController', mainController);
 
-	mainController.$inject = ['$rootScope', '$scope', '$state'];
+	mainController.$inject = ['$rootScope', '$scope', '$state', '$window'];
 
-	function mainController($rootScope, $scope, $state) {
+	function mainController($rootScope, $scope, $state, $window) {
 		
 		init();
 
@@ -15,6 +15,7 @@
 			
 		    $scope.redirectTo = redirectTo;
 		    $scope.state = $state;
+		    $scope.logOut = logOut;
 
 		}
 
@@ -25,6 +26,11 @@
 			{
 		    	$state.go(view);
 			}
+		}
+		
+		function logOut() {
+			delete $window.sessionStorage.token;
+			$rootScope.userLogged = false;
 		}
 	}
 })();
