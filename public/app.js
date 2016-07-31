@@ -19,6 +19,11 @@ myApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $
         url: '/signin',
         templateUrl: '/public/scripts/views/sign-in.html',
         controller: 'signInController'
+    }).
+    state('create-poll', {
+        url: '/create-poll',
+        templateUrl: '/public/scripts/views/create-poll.html',
+        controller: 'createPollController'
     });
 
 

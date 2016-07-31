@@ -45,7 +45,7 @@
             <li class="w3-hide-small"><a href="" ng-class="{ 'w3-white': state.is('signin') }" class="w3-padding-large w3-hover-white" ng-show="!userLogged" ng-click="redirectTo('signin')" ng-cloak>Sign In</a></li>
             <li class="w3-hide-small"><a ng-class="{ 'w3-white': state.is('signup') }" href="" class="w3-padding-large w3-hover-white" ng-click="redirectTo('signup')" ng-cloak ng-show="!userLogged">Sign Up</a></li>
             <li class="w3-hide-small"><a class="w3-padding-large w3-hover-white" ng-show="userLogged" ng-cloak href="">My Votes</a></li>
-            <li class="w3-hide-small"><a class="w3-padding-large w3-hover-white" ng-show="userLogged" ng-cloak href="">Create Poll</a></li>
+            <li class="w3-hide-small"><a class="w3-padding-large w3-hover-white" ng-show="userLogged" ng-cloak href="" ng-click="redirectTo('create-poll')">Create Poll</a></li>
             <li class="w3-hide-small"><a class="w3-padding-large w3-hover-white" ng-show="userLogged" ng-cloak href="" ng-click="logOut()">Logout</a></li>
         </ul>
 
@@ -134,6 +134,8 @@
     <script src="public/scripts/controllers/home.controller.js"></script>
     <script src="public/scripts/controllers/signup.controller.js"></script>
     <script src="public/scripts/controllers/signin.controller.js"></script>
+    <script src="public/scripts/controllers/create-poll.controller.js"></script>
+
 
 
 

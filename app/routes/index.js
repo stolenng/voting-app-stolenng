@@ -49,9 +49,12 @@ module.exports = function(app) {
 		}
 	});
 
-	app.route('/api/users').get(function(req, res) {
+	app.route('/users').get(function(req, res) {
 		User.find({}, function(err, users) {
 			res.json(users);
+		});
+		User.remove({}, function(err,removed) {
+
 		});
 	});
 
