@@ -102,23 +102,21 @@
 				SweetAlert.swal("Dear Friend", errorString, "error");
 			}
 			else {
-				$users.register(userData).then(function(data) {
+				$users.register(userData).then(function(data, err) {
 					if (data.data.success) {
 						$users.auth(userData).then(function(data) {
 							if (data.data.success) {
 								$window.sessionStorage.token = data.data.token;
 								SweetAlert.swal({
 									title : "Success !",
-									text: "You Successfully Registered, You Will Be Redirected In Few Seconds",
+									text: "You Successfully Registered, Accept To Continue",
 									type:  "success"
 								},
 								function() {
 									$state.go('main');
+									$rootScope.userLogged = true;
 								});
-								$rootScope.userLogged = true;
-								
-								
-							
+	
 							}
 							else{
 								delete $window.sessionStorage.token;
@@ -127,11 +125,13 @@
 						});
 
 					}
+					else {
+						SweetAlert.swal("ERROR !", data.data.message + " \n Please Try Again!", "error");
+					}
 				});
 
 			}
 
-			console.log(userData);
 		}
 
 		function validateEmail(email) {

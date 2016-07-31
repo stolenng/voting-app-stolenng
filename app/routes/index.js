@@ -66,7 +66,7 @@ module.exports = function(app) {
 		// save the sample user
 		newUser.save(function(err) {
 			if (err){ 
-			  res.status(500).send({ success: false });
+			  res.json({ success: false, message : "User Name Already Exists!" });
 			}
 			else {
 				res.json({
@@ -77,7 +77,7 @@ module.exports = function(app) {
 	});
 
 	app.post('/auth', function(req, res) {
-		console.log(req.body.username);
+		//console.log(req.body.username);
 		User.findOne({
 			name: req.body.username
 		}, function(err, user) {
@@ -90,7 +90,7 @@ module.exports = function(app) {
 					message: 'Authentication failed. User not found.'
 				});
 			}
-			else if (user) {
+		   if (user) {
 
 				// check if password matches
 				if (user.password != req.body.password) {

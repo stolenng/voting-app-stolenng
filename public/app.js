@@ -14,6 +14,11 @@ myApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $
         url: '/signup',
         templateUrl: '/public/scripts/views/sign-up.html',
         controller: 'signUpController'
+    }).
+    state('signin', {
+        url: '/signin',
+        templateUrl: '/public/scripts/views/sign-in.html',
+        controller: 'signInController'
     });
 
 
@@ -31,6 +36,4 @@ myApp.run(['$state', '$rootScope', '$window', function($state, $rootScope, $wind
     else {
         $rootScope.userLogged = false;
     }
-        console.log($rootScope.userLogged);
-
 }])

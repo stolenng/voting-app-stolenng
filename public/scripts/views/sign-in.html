@@ -1,0 +1,23 @@
+<div ng-controller="signInController" class="header-margin-fix signup-controller">
+   <div class="container">
+       <div class="row">
+           <div class="col-xs-12">
+               <div class="form-group">
+                  <label for="username">Name/Email:</label>
+                  <input ng-class="{ 'error': errors['username'] }"  type="text" class="form-control" id="username" ng-model="username">
+               </div>
+           </div>
+           <div class="col-xs-12">
+               <div class="form-group">
+                  <label for="password">Password:</label>
+                  <input ng-class="{ 'error': errors['password'] }"  type="password" class="form-control" id="password" ng-model="password">
+               </div>
+           </div>
+           <div class="col-xs-12">
+               <div class="form-group">
+                   <button class="w3-btn w3-padding-16 w3-large w3-margin-top" ng-click="signIn()" >Sign in !</button>
+               </div>
+           </div>
+       </div>
+   </div>
+</div>
