@@ -107,6 +107,7 @@
 						$users.auth(userData).then(function(data) {
 							if (data.data.success) {
 								$window.sessionStorage.token = data.data.token;
+		                        $window.sessionStorage.userName = data.data.userName;
 								SweetAlert.swal({
 									title : "Success !",
 									text: "You Successfully Registered, Accept To Continue",
@@ -115,6 +116,7 @@
 								function() {
 									$state.go('main');
 									$rootScope.userLogged = true;
+	                                $rootScope.userName = data.data.userName;
 								});
 	
 							}

@@ -31,3 +31,20 @@
 .error:focus {
     border:1px solid red;
 }
+
+
+.create-poll-options .form-group {
+    width:100%;
+}
+
+
+
+.poll-view {
+    margin-top:150px;
+}
+
+#pie{
+        width: 100% !important;
+        max-width: 800px;
+        height: auto !important;
+    }

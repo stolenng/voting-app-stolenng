@@ -24,19 +24,24 @@ myApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $
         url: '/create-poll',
         templateUrl: '/public/scripts/views/create-poll.html',
         controller: 'createPollController'
+    }).
+    state('poll-view', {
+        url: '/poll-view/:pollName',
+        templateUrl: '/public/scripts/views/poll-view.html'
     });
 
 
 
 }]);
 
-myApp.config(['$httpProvider', function($httpProvider) {  
+myApp.config(['$httpProvider', function($httpProvider) {
     $httpProvider.interceptors.push('myInterceptor');
 }]);
 
 myApp.run(['$state', '$rootScope', '$window', function($state, $rootScope, $window) {
-    if($window.sessionStorage.token) {
+    if ($window.sessionStorage.token) {
         $rootScope.userLogged = true;
+        $rootScope.userName = $window.sessionStorage.userName;
     }
     else {
         $rootScope.userLogged = false;

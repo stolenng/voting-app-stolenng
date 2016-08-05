@@ -1,23 +1,30 @@
 <div ng-controller="createPollController" class="header-margin-fix signup-controller">
    <div class="container">
-       <div class="row">
-           <div class="col-xs-12">
+      <div class="row">
+         <div class="col-xs-12">
+            <div class="form-group">
+               <label for="username">Poll Name:</label>
+               <input ng-class="{ 'error': errors['pollName'] }" type="text" class="form-control" id="pollName" ng-model="pollName">
+            </div>
+         </div>
+         <div class="create-poll-options">
+            <div class="col-xs-3" ng-repeat="option in pollOptions track by $index">
                <div class="form-group">
-                  <label for="username">Name:</label>
-                  <input ng-class="{ 'error': errors['username'] }"  type="text" class="form-control" id="username" ng-model="username">
+                  <label>Option: <input class="form-control" type="text" ng-model="pollOptions[$index].name"></label>
+                  <button ng-click="pollOptions.splice($index, 1)" aria-label="Remove">X</button>
                </div>
-           </div>
-           <div class="col-xs-12">
-               <div class="form-group">
-                  <label for="password">Password:</label>
-                  <input ng-class="{ 'error': errors['password'] }"  type="password" class="form-control" id="password" ng-model="password">
-               </div>
-           </div>
-           <div class="col-xs-12">
-               <div class="form-group">
-                   <button class="w3-btn w3-padding-16 w3-large w3-margin-top" ng-click="signIn()" >Sign in !</button>
-               </div>
-           </div>
-       </div>
+            </div>
+         </div>
+         <div class="col-xs-12">
+            <div class="form-group">
+                  <button class="form-control btn-md btn-danger w3-large w3-margin-top" ng-click="pollOptions.push({ name : 'Option Number ' + (pollOptions.length + 1), count : 0})">Add Option</button>
+            </div>
+         </div>
+         <div class="col-xs-12">
+            <div class="form-group">
+               <button class="w3-btn w3-padding-16 w3-large w3-margin-top" ng-click="createPoll()">Create My Poll !</button>
+            </div>
+         </div>
+      </div>
    </div>
 </div>
