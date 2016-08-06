@@ -1,8 +1,14 @@
 <div ng-controller="pollViewController" class="poll-view">
+    <div class="col-xs-12 text-center" style="margin-bottom:50px">
+        <h1>{{ pollName }}</h1>
+    </div>
+    
+    <br>
+    <br>
     <div class="container">
         <div class="row">
             <div class="col-xs-3">
-                <select id="fixSelectBug" class="form-control"   ng-model="addVote">
+                <select id="fixSelectBug" class="form-control" ng-model="addVote">
                    <option ng-repeat="label in labels" value="{{$index}}"  > {{ label }} </option>
                 </select>
                 <br>
@@ -12,16 +18,21 @@
                 <button ng-if="canDelete" class="btn btn-lg btn-success" ng-click="deletePoll()"><i class="glyphicon glyphicon-remove-circle deletePost"></i>Delete My Post</button>
                 <br><br>
                 <div ng-if="!canAddOption">
-                    <input type="text" name="" ng-model="optionName" class="form-control"/>
+                    <input type="text" name="" ng-model="optionName" class="form-control" />
                     <br>
                     <button class="btn btn-lg btn-warning" ng-click="newOption(optionName)">Add New Option</button>
                 </div>
+                <br><br>
+                <button href="" class="btn btn-lg btn-info" socialshare socialshare-provider="facebook" socialshare-description="Come And Vote For {{ pollName }}" socialshare-display="test" socialshare-text="{{ pollName }}" socialshare-hashtags="voting app, angular-socialshare"
+                    socialshare-url="{{ pollUrl }}">
+                Share me
+                </button>
             </div>
             <div class="single-poll-div col-xs-9">
                 <canvas id="pie" class="chart chart-pie chart-xs" chart-data="data" chart-labels="labels" chart-options="options" chart-legend="true" legend="true">
                 </canvas>
             </div>
-        
+
 
         </div>
     </div>

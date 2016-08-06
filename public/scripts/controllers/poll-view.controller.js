@@ -16,6 +16,8 @@
             $scope.deletePoll = deletePoll;
             $scope.canAddOption = $rootScope.userLogged;
             $scope.newOption = newOption;
+            
+            $scope.pollUrl = window.location.href;
         }
         
         function newOption(optionName) {
@@ -140,10 +142,10 @@
                 
                 if(pollData.userName == data.data.userName) {
                     $scope.canDelete = true;
-                    console.log($rootScope.userName);
                 }
                 
                 $scope.postId = data.data._id;
+                $scope.pollName = data.data.title;
 
                 angular.forEach(data.data.votes, function(value, key) {
                     $scope.labels.push(value.name);

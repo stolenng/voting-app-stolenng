@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ui.router', 'chart.js', 'oitozero.ngSweetAlert']);
+var myApp = angular.module('myApp', ['ui.router', 'chart.js', 'oitozero.ngSweetAlert', '720kb.socialshare']);
 
 myApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 
