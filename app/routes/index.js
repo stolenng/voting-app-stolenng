@@ -6,12 +6,10 @@ var User = require("../models/User.js");
 var poll = require("../models/poll.js");
 
 
-/*
-var imageAPI = require(path + '/app/controllers/imageAPI.server.js');
-var imageParser = require("../models/imageParser.js");
-var apicache = require('apicache').options({ debug: true }).middleware;
-var imgAPI = new imageAPI();
-*/
+var getClientAddress = function(req) {
+	return (req.headers['x-forwarded-for'] || '').split(',')[0] ||
+		req.connection.remoteAddress;
+};
 
 module.exports = function(app) {
 
@@ -50,15 +48,15 @@ module.exports = function(app) {
 
 		}
 	});
-	/*
-		app.route('/users').get(function(req, res) {
-			User.find({}, function(err, users) {
-				res.json(users);
-			});
-			User.remove({}, function(err,removed) {
 
+	/*	app.route('/polls').get(function(req, res) {
+				poll.find({}, function(err, polls) {
+					res.json(polls);
+				});
+				poll.remove({}, function(err,removed) {
+
+				});
 			});
-		});
 	*/
 	app.post('/register', function(req, res) {
 		// create a sample user
@@ -91,8 +89,10 @@ module.exports = function(app) {
 			votes: req.body.votes
 		});
 
-		newPoll.save(function(err) {
+
+		newPoll.save(function(err, poll) {
 			if (err) {
+				console.log(err);
 				res.json({
 					success: false,
 					message: err
@@ -101,38 +101,93 @@ module.exports = function(app) {
 			else {
 				res.json({
 					success: true,
-					message: "Successfully Created Poll!"
+					message: "Successfully Created Poll!",
+					data: poll
 				});
 			}
 		});
 	});
-	
-	
-	app.get('/api/polls/single', function(req, res) {
-	   poll.findOne({ 
-	   		userName: req.query.userName,
-	   		title: req.query.title
-	   }, function (err, poll) {
-	   		if(err) throw err;
-	   		res.json(poll);
-	   });
-	})
 
-	app.get('/api/polls/get', function(req, res) {
-		var userName = req.body.userName;
-		if (userName) {
+
+	app.get('/polls/single', function(req, res) {
+		poll.findOne({
+			_id: req.query.pollId
+		}, function(err, poll) {
+			if (err) throw err;
+			res.json(poll);
+		});
+	})
+	
+	app.delete('/api/polls/delete/:id', function(req, res) {
+		var pollId = req.params.id;
+		poll.remove({ _id : pollId}, function (err) {
+			if(err) throw err;
+			
+			res.json({
+				success: true,
+				message: "Your Poll Was Successfully Deleted !"
+			});
+		});
+		
+	});
+
+	app.post('/polls/vote', function(req, res) {
+		var name = "";
+		if (req.body.loggedUser) {
+			name = req.body.userName;
+		}
+		else {
+			name = getClientAddress(req);
+		}
+		poll.findOne({
+			_id: req.body.pollId
+		}, function(err, poll) {
+			if (err) throw err;
+			if (poll.voters.indexOf(name) != -1) {
+				res.json({
+					success: false,
+					message: "User Already Voted !"
+				});
+			}
+			else {
+				poll.voters.push(name);
+				poll.votes.find(function(value) {
+					if (value.name == req.body.voteName) {
+						value.count++;
+					}
+				});
+				poll.save(function(err) {
+					if (err) throw err;
+
+					res.json({
+						success: true,
+						message: "Your Vote Was Successfully Added !"
+					});
+				});
+
+			}
+		});
+	});
+
+	app.get('/polls/get', function(req, res) {
+		var userName = req.query.userName;
+		if (userName != "undefined") {
 			poll.find({
 				userName: userName
 			}, function(err, polls) {
-				if(err) {
-					res.json({success: false, message: err});
+				if (err) {
+					res.json({
+						success: false,
+						message: err
+					});
 				}
-				else{
+				else {
 					res.json(polls);
 				}
 
 			});
 		}
+
 		else {
 			poll.find({}, function(err, polls) {
 				if (err) {

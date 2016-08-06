@@ -7,7 +7,8 @@ var Schema = mongoose.Schema;
 var poll = new Schema({
     userName: String, 
     title: String, 
-    votes: [pollOption] 
+    votes: [pollOption],
+    voters: [String]
 },
 {
        versionKey: false

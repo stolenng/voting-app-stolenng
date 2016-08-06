@@ -43,8 +43,45 @@
     margin-top:150px;
 }
 
-#pie{
-        width: 100% !important;
-        max-width: 800px;
-        height: auto !important;
-    }
+#pie {
+    width: 100% !important;
+    max-width: 800px;
+    height: auto !important;
+}
+
+#fixSelectBug option[value="? string:fuck this shit ?"] {
+    display: none;
+}
+
+.w3-padding-128 {
+    padding-top: 95px!important;
+    padding-bottom: 40px!important;
+}
+
+.polls {
+    margin-top:25px;
+}
+
+.poll-div {
+    box-shadow: 0px 1px 4px 2px #000;
+    width:20%;
+    margin: 0 25px;
+    cursor:pointer;
+}
+
+.poll-div label {
+    display: inline-block;
+}
+
+.my-polls {
+    margin-top: 100px;
+}
+
+.deletePost {
+    top: 3px;
+    margin-right: 10px;
+}
+
+.poll-view button {
+    width:100%;
+}

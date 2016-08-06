@@ -31,6 +31,8 @@
 		function logOut() {
 			delete $window.sessionStorage.token;
 			$rootScope.userLogged = false;
+			$rootScope.userName = null;
+			$state.go('main');
 		}
 	}
 })();

@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 <link rel="stylesheet" href="public/css/font-awesome.min.css">
+
 <link rel="stylesheet" href="public/bower_components/bootstrap/dist/css/bootstrap.css">
 <link rel="stylesheet" href="public/bower_components/sweetalert/dist/sweetalert.css">
 <link rel="stylesheet" href="public/css/w3.css">
@@ -44,7 +45,7 @@
             <li><a href="" ng-class="{ 'w3-white': state.is('main') }" class="w3-padding-large " ng-click="redirectTo('main')">Home</a></li>
             <li class="w3-hide-small"><a href="" ng-class="{ 'w3-white': state.is('signin') }" class="w3-padding-large w3-hover-white" ng-show="!userLogged" ng-click="redirectTo('signin')" ng-cloak>Sign In</a></li>
             <li class="w3-hide-small"><a ng-class="{ 'w3-white': state.is('signup') }" href="" class="w3-padding-large w3-hover-white" ng-click="redirectTo('signup')" ng-cloak ng-show="!userLogged">Sign Up</a></li>
-            <li class="w3-hide-small"><a class="w3-padding-large w3-hover-white" ng-show="userLogged" ng-cloak href="">My Votes</a></li>
+            <li class="w3-hide-small"><a class="w3-padding-large w3-hover-white" ng-show="userLogged" ng-cloak href="" ng-click="redirectTo('my-polls')">My Polls</a></li>
             <li class="w3-hide-small"><a class="w3-padding-large w3-hover-white" ng-show="userLogged" ng-cloak href="" ng-click="redirectTo('create-poll')">Create Poll</a></li>
             <li class="w3-hide-small"><a class="w3-padding-large w3-hover-white" ng-show="userLogged" ng-cloak href="" ng-click="logOut()">Logout</a></li>
         </ul>
@@ -139,6 +140,8 @@
     <script src="public/scripts/controllers/signin.controller.js"></script>
     <script src="public/scripts/controllers/create-poll.controller.js"></script>
     <script src="public/scripts/controllers/poll-view.controller.js"></script>
+    <script src="public/scripts/controllers/my-polls.controller.js"></script>
+
 
 
 

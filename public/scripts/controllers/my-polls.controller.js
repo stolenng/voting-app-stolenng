@@ -3,11 +3,11 @@
 
 	angular
 		.module('myApp')
-		.controller('homeController', homeController);
+		.controller('myPollsController', myPollsController);
 
-	homeController.$inject = ['$rootScope', '$scope', '$state', '$polls'];
+	myPollsController.$inject = ['$rootScope', '$scope', '$state', '$polls'];
 
-	function homeController($rootScope, $scope, $state, $polls) {
+	function myPollsController($rootScope, $scope, $state, $polls) {
 		init();
 
 		function init() {
@@ -18,7 +18,8 @@
 		}
 		
 		function initPolls() {
-			$polls.getAllPosts().then(function (data){
+			$polls.getAllPosts($rootScope.userName).then(function (data){
+			    console.log(data);
 				$scope.polls = data.data;	
 			});
 		}

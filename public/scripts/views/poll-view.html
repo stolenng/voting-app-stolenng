@@ -2,16 +2,20 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-3">
-                <select class="form-control" ng-model="addVote">
-                    <option ng-repeat="label in labels" value="label.$index"  ng-selected="$first"> {{ label }} </option>
+                <select id="fixSelectBug" class="form-control"   ng-model="addVote">
+                   <option ng-repeat="label in labels" value="{{$index}}"  > {{ label }} </option>
                 </select>
                 <br>
                 <button class="btn btn-md btn-danger" ng-click="voteMe()">Vote Me !</button>
+                <br>
+                <br>
+                <button ng-if="canDelete" class="btn btn-lg btn-success" ng-click="deletePoll()"><i class="glyphicon glyphicon-remove-circle deletePost"></i>Delete My Post</button>
             </div>
             <div class="single-poll-div col-xs-7">
                 <canvas id="pie" class="chart chart-pie chart-xs" chart-data="data" chart-labels="labels" chart-options="options" chart-legend="true" legend="true">
-            </canvas>
+                </canvas>
             </div>
+
         </div>
     </div>
 

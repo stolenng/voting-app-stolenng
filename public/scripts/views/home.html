@@ -4,6 +4,14 @@
       <h1 class="w3-margin w3-jumbo">Welcome To stolenng Voting App</h1>
       <button class="w3-btn w3-padding-16 w3-large w3-margin-top main-buttons-fix " ng-cloak ng-click="redirectTo('signup')" ng-show="!userLogged">Sign Up</button>
       <button class="w3-btn w3-padding-16 w3-large w3-margin-top main-buttons-fix " ng-cloak ng-click="redirectTo('signin')" ng-show="!userLogged">Sign In</button>
-      <button class="w3-btn w3-padding-16 w3-large w3-margin-top" ng-show="userLogged" ng-cloak>My Votes</button>
+      <button class="w3-btn w3-padding-16 w3-large w3-margin-top" ng-show="userLogged" ng-cloak ng-click="redirectTo('my-polls')">My Polls</button>
+    </div>
+    <div class="container polls">
+      <div class="row">
+        <div class="poll-div col-xs-3" ng-repeat="poll in polls" ng-click="goToPoll(poll._id)">
+           <h2> {{ poll.title }} </h2>
+           <label> Author: {{ poll.userName }} </label>
+        </div>
+      </div>
     </div>
 </div>

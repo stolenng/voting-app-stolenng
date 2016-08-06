@@ -7,8 +7,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $
     $stateProvider.
     state('main', {
         url: '/home',
-        templateUrl: '/public/scripts/views/home.html',
-        controller: 'homeController'
+        templateUrl: '/public/scripts/views/home.html'
     }).
     state('signup', {
         url: '/signup',
@@ -25,8 +24,12 @@ myApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $
         templateUrl: '/public/scripts/views/create-poll.html',
         controller: 'createPollController'
     }).
+    state('my-polls', {
+        url: '/my-polls',
+        templateUrl: '/public/scripts/views/my-polls.html'
+    }).
     state('poll-view', {
-        url: '/poll-view/:pollName',
+        url: '/poll-view/:pollId',
         templateUrl: '/public/scripts/views/poll-view.html'
     });
 

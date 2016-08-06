@@ -11,31 +11,83 @@
         init();
 
         function init() {
-
             getPollData();
-            $scope.addVote = "Choose You Weapon";
             $scope.voteMe = voteMe;
-
+            $scope.deletePoll = deletePoll;
         }
         
         function voteMe() {
-            console.log($scope.addVote);
+            if($scope.addVote == undefined) {
+                 SweetAlert.swal({
+                            title: "Error !",
+                            text: "Please Choose Your Vote!",
+                            type: "error"
+                        });
+                return ;
+            }
+            var pollId = $stateParams.pollId;
+            var voteIndex = parseInt($scope.addVote);
+            
+            var voteLabel = $scope.labels[voteIndex];
+            
+            var voteAdditionData = {
+                'pollId': pollId,
+                'voteName': voteLabel,
+                'loggedUser': $rootScope.userLogged,
+            };
+            
+            if($rootScope.userLogged) {
+                voteAdditionData.userName = $rootScope.userName;
+            }
+            
+            $polls.vote(voteAdditionData).then(function (data) {
+               console.log(data); 
+               if(data.data.success){
+                $scope.data[voteIndex]++;
+                 SweetAlert.swal("Success !", data.data.message , "success");   
+               }
+               else {
+                    SweetAlert.swal("ERROR !", data.data.message , "error");
+               }
+            });
+            
+
+        }
+        
+        function deletePoll () {
+            var postId =  $scope.postId;
+            
+            console.log(postId);
+            
+            $polls.deletePoll(postId).then(function (data){
+                if(data.data.success){
+                     SweetAlert.swal({
+                                title: "Success !",
+                                text: data.data.message,
+                                type: "success"
+                            },
+                            function() {
+                                $state.go('main');
+                    });
+
+                }
+            });
         }
 
         function getPollData() {
 
-            var pollName = $stateParams.pollName;
+            var pollId = $stateParams.pollId;
             $scope.data = [];
             $scope.labels = [];
             $scope.options = { legend: { display: true } };
 
-            if (!pollName) {
+            if (!pollId) {
                 return null;
             }
 
             var pollData = {
                 'userName': $rootScope.userName,
-                'title': pollName
+                'pollId': pollId
             };
 
             //console.log(pollData);
@@ -53,17 +105,20 @@
                             $state.go('main');
                         });
                 }
+                
+                if(pollData.userName == data.data.userName) {
+                    $scope.canDelete = true;
+                    $scope.postId = data.data._id;
+                    console.log($rootScope.userName);
+                }
 
                 angular.forEach(data.data.votes, function(value, key) {
                     $scope.labels.push(value.name);
                     $scope.data.push(value.count);
                 });
                 
-                $scope.data[0] =4;
-                $scope.data[1] =5;
+                
 
-
-                console.log(data);
             });
         }
 

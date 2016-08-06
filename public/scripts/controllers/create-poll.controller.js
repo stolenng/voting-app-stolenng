@@ -39,6 +39,7 @@
                 pollFlag = true;
             }
             //console.log($rootScope.userName);
+            //console.log($scope.pollOptions);
             if(pollFlag) {
                 var poll =  {
                   pollName: $scope.pollName,
@@ -48,16 +49,18 @@
                 
                 $polls.createPoll(poll).then(function (data){
                     if(data.data.success){
+                        console.log(data.data);
                         SweetAlert.swal({
                             title: "Success !",
                             text: "Your Poll Was Successfully Created !",
                             type: "success"
                         },
                         function() {
-                            $state.go('poll-view', { 'pollName' : poll.pollName });
+                            $state.go('poll-view', { 'pollId' : data.data.data._id });
                         });
                     }
                     else{
+                        console.log(data);
                         SweetAlert.swal("ERROR !", data.data.message + "\n Please Try Again!", "error");
                     }
                 })

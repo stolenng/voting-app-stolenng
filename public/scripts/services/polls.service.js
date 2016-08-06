@@ -16,14 +16,29 @@
 	    }
 	    
 	    function getSinglePoll(pollData) {
-	        return $http.get(baseUrl + "/api/polls/single" + "/?userName=" + pollData.userName + "&title=" +pollData.title );
+	        return $http.get(baseUrl + "/polls/single" + "/?pollId=" + pollData.pollId  );
+	    }
+	    
+	    function getAllPosts(userName) {
+	    	return $http.get(baseUrl + "/polls/get" + "/?userName=" +userName);
+	    }
+	    
+	    function vote(voteData) {
+	    	return $http.post(baseUrl + "/polls/vote", voteData);
+	    }
+	    
+	    function deletePoll(pollId) {
+	    	return $http.delete(baseUrl + "/api/polls/delete/" + pollId);
 	    }
 
         
 		
 		return { 
 		    createPoll : createPoll,
-		    getSinglePoll : getSinglePoll
+		    getSinglePoll : getSinglePoll,
+		    getAllPosts: getAllPosts,
+		    vote : vote,
+		    deletePoll: deletePoll
 		}
 	}
 })();
