@@ -130,6 +130,25 @@ module.exports = function(app) {
 		});
 		
 	});
+	
+	app.post('/polls/vote/add', function(req, res) {
+		var postId = req.body.pollId;
+		var newOption =req.body.option;
+
+		poll.findOne({ 
+			_id : postId
+		}, function(err, poll) {
+			if(err) throw err;
+			poll.votes.push(newOption);
+			poll.save(function (err) {
+				if(err) throw err;
+				res.json({
+					success: true,
+					message: "Option Was Added Successfully"
+				});
+			});
+		});
+	});
 
 	app.post('/polls/vote', function(req, res) {
 		var name = "";

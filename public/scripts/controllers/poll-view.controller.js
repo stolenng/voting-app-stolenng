@@ -14,6 +14,38 @@
             getPollData();
             $scope.voteMe = voteMe;
             $scope.deletePoll = deletePoll;
+            $scope.canAddOption = $rootScope.userLogged;
+            $scope.newOption = newOption;
+        }
+        
+        function newOption(optionName) {
+            var option = {
+              'name': optionName,
+              'count': 0
+            };
+            
+            var pollData = {
+              'pollId' : $scope.postId,
+              'option' : option
+            };
+            
+            $polls.addNewOption(pollData).then(function (data) {
+               if(data.data.success){
+                     SweetAlert.swal({
+                            title: "Success !",
+                            text: data.data.message,
+                            type: "success"
+                        },
+                        function() {
+                            $scope.labels.push(option.name);
+                            $scope.data.push(0);
+                    });
+
+                }
+            });
+            
+            $scope.canAddOption = true;
+            console.log(option);
         }
         
         function voteMe() {
@@ -108,9 +140,10 @@
                 
                 if(pollData.userName == data.data.userName) {
                     $scope.canDelete = true;
-                    $scope.postId = data.data._id;
                     console.log($rootScope.userName);
                 }
+                
+                $scope.postId = data.data._id;
 
                 angular.forEach(data.data.votes, function(value, key) {
                     $scope.labels.push(value.name);

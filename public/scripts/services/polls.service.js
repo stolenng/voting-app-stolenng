@@ -30,7 +30,10 @@
 	    function deletePoll(pollId) {
 	    	return $http.delete(baseUrl + "/api/polls/delete/" + pollId);
 	    }
-
+		
+		function addNewOption(optionData) {
+			return $http.post(baseUrl + '/polls/vote/add', optionData);
+		}
         
 		
 		return { 
@@ -38,7 +41,8 @@
 		    getSinglePoll : getSinglePoll,
 		    getAllPosts: getAllPosts,
 		    vote : vote,
-		    deletePoll: deletePoll
+		    deletePoll: deletePoll,
+		    addNewOption: addNewOption
 		}
 	}
 })();
