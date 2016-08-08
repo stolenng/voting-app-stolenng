@@ -21,6 +21,31 @@
         }
         
         function newOption(optionName) {
+            console.log(optionName);
+            if(optionName == undefined || optionName == "") {
+                  SweetAlert.swal({
+                        title: "Error !",
+                        text: "Please Enter Vote",
+                        type: "error"
+                    },
+                    function() {
+                           
+                });
+                 return;
+            }
+            
+            if($scope.labels.indexOf(optionName) != -1) {
+                  SweetAlert.swal({
+                        title: "Error !",
+                        text: "Vote Already Exists",
+                        type: "error"
+                    },
+                    function() {
+                           
+                });
+                 return;
+            }
+            
             var option = {
               'name': optionName,
               'count': 0

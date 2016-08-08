@@ -7,7 +7,7 @@
     <br>
     <div class="container">
         <div class="row">
-            <div class="col-xs-3">
+            <div class="col-xs-12 col-sm-3">
                 <select id="fixSelectBug" class="form-control" ng-model="addVote">
                    <option ng-repeat="label in labels" value="{{$index}}"  > {{ label }} </option>
                 </select>
@@ -22,13 +22,12 @@
                     <br>
                     <button class="btn btn-lg btn-warning" ng-click="newOption(optionName)">Add New Option</button>
                 </div>
-                <br><br>
                 <button href="" class="btn btn-lg btn-info" socialshare socialshare-provider="facebook" socialshare-description="Come And Vote For {{ pollName }}" socialshare-display="test" socialshare-text="{{ pollName }}" socialshare-hashtags="voting app, angular-socialshare"
                     socialshare-url="{{ pollUrl }}">
                 Share me
                 </button>
             </div>
-            <div class="single-poll-div col-xs-9">
+            <div class="single-poll-div col-md-9 col-xs-12">
                 <canvas id="pie" class="chart chart-pie chart-xs" chart-data="data" chart-labels="labels" chart-options="options" chart-legend="true" legend="true">
                 </canvas>
             </div>

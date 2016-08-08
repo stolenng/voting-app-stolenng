@@ -85,3 +85,44 @@
 .poll-view button {
     width:100%;
 }
+
+
+/*Responsive FIx*/
+
+@media only screen and (max-width: 500px) {
+    .w3-navbar li:not(.w3-opennav) {
+    width:80% ;
+}
+
+.w3-show ul li {
+    width:100% !important;
+}
+
+.poll-div {
+    width:85%;
+    margin:10px 25px;
+}
+
+.signup-controller .form-group {
+    width:100%;
+}
+
+.signup-controller button {
+    width: 100%;
+}
+
+.w3-jumbo {
+    font-size:20px !important;
+}
+
+.main-buttons-fix {
+    margin:0;
+    width:100%;
+
+}
+
+
+
+}
+
+

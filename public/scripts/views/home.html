@@ -8,7 +8,7 @@
     </div>
     <div class="container polls">
       <div class="row">
-        <div class="poll-div col-xs-3" ng-repeat="poll in polls" ng-click="goToPoll(poll._id)">
+        <div class="poll-div col-xs-6 col-sm-3" ng-repeat="poll in polls" ng-click="goToPoll(poll._id)">
            <h2> {{ poll.title }} </h2>
            <label> Author: {{ poll.userName }} </label>
         </div>

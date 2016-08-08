@@ -48,21 +48,23 @@
             <li class="w3-hide-medium w3-hide-large w3-opennav w3-right">
                 <a class="w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
             </li>
-            <li><a href="" ng-class="{ 'w3-white': state.is('main') }" class="w3-padding-large " ng-click="redirectTo('main')">Home</a></li>
+            <li><a href="" ng-class="{ 'w3-white': state.is('main')  }" class="w3-padding-large mobileHide" ng-click="redirectTo('main')">Home</a></li>
             <li class="w3-hide-small"><a href="" ng-class="{ 'w3-white': state.is('signin') }" class="w3-padding-large w3-hover-white" ng-show="!userLogged" ng-click="redirectTo('signin')" ng-cloak>Sign In</a></li>
             <li class="w3-hide-small"><a ng-class="{ 'w3-white': state.is('signup') }" href="" class="w3-padding-large w3-hover-white" ng-click="redirectTo('signup')" ng-cloak ng-show="!userLogged">Sign Up</a></li>
-            <li class="w3-hide-small"><a class="w3-padding-large w3-hover-white" ng-show="userLogged" ng-cloak href="" ng-click="redirectTo('my-polls')">My Polls</a></li>
-            <li class="w3-hide-small"><a class="w3-padding-large w3-hover-white" ng-show="userLogged" ng-cloak href="" ng-click="redirectTo('create-poll')">Create Poll</a></li>
+            <li class="w3-hide-small"><a ng-class="{ 'w3-white': state.is('my-polls') }" class="w3-padding-large w3-hover-white" ng-show="userLogged" ng-cloak href="" ng-click="redirectTo('my-polls')">My Polls</a></li>
+            <li class="w3-hide-small"><a ng-class="{ 'w3-white': state.is('create-poll') }" class="w3-padding-large w3-hover-white" ng-show="userLogged" ng-cloak href="" ng-click="redirectTo('create-poll')">Create Poll</a></li>
             <li class="w3-hide-small"><a class="w3-padding-large w3-hover-white" ng-show="userLogged" ng-cloak href="" ng-click="logOut()">Logout</a></li>
         </ul>
 
         <!-- Navbar on small screens -->
         <div id="navDemo" class="w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:51px">
             <ul class="w3-navbar w3-left-align w3-large w3-black">
-                <li><a ng-class="{ 'w3-white': state.is('main') }" ng-click="redirectTo('main')" class="w3-padding-large" href="">Home</a></li>
-                <li><a class="w3-padding-large" href="">Sign In</a></li>
-                <li><a ng-class="{ 'w3-white': state.is('signup') }" ng-click="redirectTo('signup')" class="w3-padding-large" href="">Sign Up</a></li>
-                <li><a class="w3-padding-large" href="">My Votes</a></li>
+                <li><a  ng-cloak ng-click="redirectTo('main')" class="w3-padding-large" href="">Home</a></li>
+                <li ng-show="!userLogged"><a ng-class="{ 'w3-white': state.is('signin') }" ng-cloak ng-click="redirectTo('signin')" class="w3-padding-large" href="" >Sign In</a></li>
+                <li ng-show="!userLogged"><a ng-class="{ 'w3-white': state.is('signup') } " ng-cloak ng-click="redirectTo('signup')" class="w3-padding-large" href="" >Sign Up</a></li>
+                <li  ng-show="userLogged"><a class="w3-padding-large" href=""  ng-cloak ng-click="redirectTo('my-polls')">My Polls</a></li>
+                 <li  ng-show="userLogged"><a class="w3-padding-large"  ng-cloak href="" ng-click="redirectTo('create-poll')">Create Poll</a></li>
+                <li  ng-show="userLogged"><a class="w3-padding-large" href="" ng-cloak ng-click="logOut()">Logout </a></li>
             </ul>
         </div>
         <div ui-view>
@@ -116,6 +118,19 @@
             else {
                 x.className = x.className.replace(" w3-show", "");
             }
+            
+            $("#navDemo li").on('click', function () {
+                $("#navDemo").removeClass('w3-show'); 
+            });
+            
+            var w = document.documentElement.clientWidth;
+            if(w < 501) {
+              $("#navDemo li").on('click', function () {
+                var newText =   $(this).text();
+                $(".mobileHide").text(newText); 
+            });
+            }
+            
         }
     </script>
 
