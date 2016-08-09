@@ -22,13 +22,15 @@
         function createPoll() {
             
             var pollFlag = true;
-            
+            var counter = 0;
+
             if($scope.pollOptions.length < 2) {
                 SweetAlert.swal("ERROR !", "Please Choose At Least 2 Voting Options \n Please Try Again!", "error");
                 pollFlag = false;
             }
             else {
                 pollFlag = true;
+                counter++;
             }
             
             if($scope.pollName == undefined || $scope.pollName.length < 4 ){
@@ -37,10 +39,10 @@
             }
             else{
                 pollFlag = true;
+                counter++;
             }
-            //console.log($rootScope.userName);
-            //console.log($scope.pollOptions);
-            if(pollFlag) {
+
+            if(counter == 2) {
                 var poll =  {
                   pollName: $scope.pollName,
                   userName: $rootScope.userName,
